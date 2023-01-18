@@ -1,5 +1,11 @@
 FROM php:fpm
 
-RUN docker-php-ext-install pdo pdo_mysql
+RUN apt-get update
 
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN apt-get install -y libmcrypt-dev unzip && \
+    docker-php-ext-install mbstring mcrypt pdo_mysql
+
+RUN groupmod -g 1000 www-data && \
+    usermod -u 1000 www-data
+
+COPY php.ini /usr/local/etc/php/
