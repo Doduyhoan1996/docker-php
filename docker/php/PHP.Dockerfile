@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:8.2-fpm
 
 RUN apt-get update
 
@@ -8,4 +8,4 @@ RUN apt-get install -y libmcrypt-dev unzip && \
 RUN groupmod -g 1000 www-data && \
     usermod -u 1000 www-data
 
-COPY php.ini /usr/local/etc/php/
+# COPY php.ini /usr/local/etc/php/
