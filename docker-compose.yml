@@ -38,6 +38,19 @@ services:
         # restart: always
         networks:
             - app-network
+    
+    #Node Service
+    node:
+        image: node:alpine
+        container_name: laravel-node
+        restart: unless-stopped
+        tty: true
+        volumes:
+            - ./src:/var/www/laravel
+        networks:
+            - app-network
+
+    #Mysql Service
     mysql:
         image: mariadb:latest
         environment:
