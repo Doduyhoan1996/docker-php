@@ -9,7 +9,7 @@ services:
         volumes:
             - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
             - ./src:/var/www/laravel
-        restart: always
+        # restart: always
         networks:
             - app-network
     php:
@@ -20,7 +20,7 @@ services:
             - mysql
         volumes:
             - ./src:/var/www/laravel
-        restart: always
+        # restart: always
         networks:
             - app-network
     mysql:
@@ -31,14 +31,14 @@ services:
             MYSQL_PASSWORD: 'secret'
             MYSQL_DATABASE: 'laravel_db'
         volumes:
-            - mysqldata:/var/lib/mysql
+            - laraveldata:/var/lib/mysql
         ports:
             - 3306:3306
-        restart: always
+        # restart: always
         networks:
             - app-network
 volumes:
-    mysqldata:
+    laraveldata:
     
 networks:
     app-network:
